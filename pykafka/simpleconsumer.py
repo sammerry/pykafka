@@ -627,7 +627,10 @@ class OwnedPartition(object):
         self._messages_arrived = semaphore
         self.last_offset_consumed = 0
         self.next_offset = 0
-        self.fetch_lock = self.partition.fetch_lock
+
+    @property
+    def fetch_lock(self):
+        return self.partition.fetch_lock
 
     @property
     def message_count(self):

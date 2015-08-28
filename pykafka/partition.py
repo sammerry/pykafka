@@ -51,6 +51,7 @@ class Partition():
         self._replicas = replicas
         self._isr = isr
         self._topic = topic
+        self.fetch_lock = self.topic._cluster.handler.Lock()
 
     def __repr__(self):
         return "<{module}.{name} at {id_} (id={my_id})>".format(

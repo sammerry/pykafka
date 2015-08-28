@@ -21,7 +21,6 @@ __all__ = ["SimpleConsumer"]
 import itertools
 import logging
 import time
-import threading
 from collections import defaultdict
 from Queue import Queue, Empty
 
@@ -628,7 +627,7 @@ class OwnedPartition(object):
         self._messages_arrived = semaphore
         self.last_offset_consumed = 0
         self.next_offset = 0
-        self.fetch_lock = threading.Lock()
+        self.fetch_lock = self.partition.fetch_lock
 
     @property
     def message_count(self):

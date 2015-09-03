@@ -315,7 +315,7 @@ class BalancedConsumer():
         num_parts = parts_per_consumer + (0 if (idx + 1 > remainder_ppc) else 1)
 
         # assign partitions from i*N to (i+1)*N - 1 to consumer Ci
-        new_partitions = itertools.islice(all_parts, start, start + num_parts)
+        new_partitions = itertools.islice(all_parts, int(start), int(start + num_parts))
         new_partitions = set(new_partitions)
         log.info('Balancing %i participants for %i partitions.\nOwning %i partitions.',
                  len(participants), len(all_parts), len(new_partitions))
